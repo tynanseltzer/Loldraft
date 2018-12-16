@@ -1,5 +1,6 @@
+from .names import nameList
 class Draft:
-    def __init__(self, blueTree, redTree):
+    def __init__(self, blueTree, redTree, blueDepth, redDepth):
         # Storing what has been done so far
         self.blueTeam = []
         self.redTeam = []
@@ -8,6 +9,8 @@ class Draft:
         self.actionCounter = 0
         self.blueTree = blueTree
         self.redTree = redTree
+        self.blueDepth = blueDepth
+        self.redDepth = redDepth
 
     # Given a champion selection, change the game state to reflect picking
     # or banning that champion
@@ -24,6 +27,7 @@ class Draft:
         return self.actionCounter in [1, 3, 5, 12, 14]
 
 
+    # Actually make the move
     def makeMove(self, champion):
         if self.isBlueBan():
             self.blueBans.append(champion)
@@ -42,13 +46,30 @@ class Draft:
 
     def getMove(self):
         if self.isBluePick() or self.isBlueBan():
-            return self.blueTree.stepMaximize(self.blueTeam, self.redTeam,
-                                              self.blueBans, self.redBans,
-                                              self.actionCounter)
+            return self.blueTree.stepMaximize(self, self.blueDepth, "Garen")[1]
         else:
-            return self.redTree.stepMaximize(self.blueTeam, self.redTeam,
-                                              self.blueBans, self.redBans,
-                                              self.actionCounter)
+            return self.redTree.stepMaximize(self, self.redDepth, "Garen")[1]
+
+    def undoMove(self):
+        if self.actionCounter in [7, 10, 11, 18, 19]:
+            champion = self.blueTeam[-1]
+            self.blueTeam = self.blueTeam[:-1]
+        elif self.actionCounter in [8, 9, 12, 17, 20]:
+            champion = self.redTeam[-1]
+            self.redTeam = self.redTeam[:-1]
+        elif self.actionCounter in [1, 3, 5, 14, 16]:
+            champion = self.blueBans[-1]
+            self.blueBans = self.blueBans[:-1]
+        elif self.actionCounter in [2, 4, 6, 13, 15]:
+            champion = self.redBans[-1]
+            self.redBans = self.redBans[:-1]
+
+        self.actionCounter -= 1
+
+    def getLegalMoves(self):
+        return [champ for champ in nameList if champ not in self.blueBans and
+                champ not in self.redBans and champ not in self.blueTeam and
+                champ not in self.redTeam]
 
     def printDraft(self):
         print("Blue Bans:", self.blueBans)

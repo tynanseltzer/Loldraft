@@ -143,3 +143,5 @@ number = {
     "Zyra":140
 }
 champs = {v: k for k, v in number.items()}
+
+nameList = list(number.keys())
