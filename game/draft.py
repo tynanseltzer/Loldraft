@@ -11,6 +11,8 @@ class Draft:
         self.redTree = redTree
         self.blueDepth = blueDepth
         self.redDepth = redDepth
+        # A testing parameter, to judge efficiency
+        self.num_nodes = 0
 
     # Given a champion selection, change the game state to reflect picking
     # or banning that champion
@@ -46,9 +48,9 @@ class Draft:
 
     def getMove(self):
         if self.isBluePick() or self.isBlueBan():
-            return self.blueTree.stepMaximize(self, self.blueDepth, "Garen")[1]
+            return self.blueTree.stepMaximize(self, self.blueDepth)[1]
         else:
-            return self.redTree.stepMaximize(self, self.redDepth, "Garen")[1]
+            return self.redTree.stepMaximize(self, self.redDepth)[1]
 
     def undoMove(self):
         if self.actionCounter in [7, 10, 11, 18, 19]:

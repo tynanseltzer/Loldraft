@@ -6,25 +6,31 @@ class Tree:
 
 
 
-    def stepMaximize(self, game, depth, champion):
+    def stepMaximize(self, game, depth, alpha = -99999, beta=99999):
         if depth == 0 or game.isOver():
-            return (self.heurisic(game), champion)
+            return (self.heurisic(game), "Garen")
         # Who is maximizing
         if game.isBluePick() or game.isBlueBan():
-            moveValue = (-99999, champion)
+            moveValue = (-99999, "Garen")
 
             for move in game.getLegalMoves():
                 game.makeMove(move)
-                futureMoveValue =
-                moveValue = max(moveValue, self.stepMaximize(game, depth - 1, move))
+                futureMoveValue = self.stepMaximize(game, depth - 1)
+                # Note that we combine the tuples. The value is what the future
+                # returns, but the actual champion is the move.
+                if futureMoveValue[0] > moveValue[0]:
+                    moveValue = (futureMoveValue[0], move)
+
                 game.undoMove()
             return moveValue
 
         else:
-            moveValue = (99999, champion)
+            moveValue = (99999, "Garen")
             for move in game.getLegalMoves():
                 game.makeMove(move)
-                moveValue = min(moveValue, self.stepMaximize(game, depth - 1, move))
+                futureMoveValue = self.stepMaximize(game, depth - 1)
+                if futureMoveValue[0] < moveValue[0]:
+                    moveValue = (futureMoveValue[0], move)
                 game.undoMove()
 
 
