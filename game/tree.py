@@ -8,6 +8,7 @@ class Tree:
 
     def stepMaximize(self, game, depth, alpha = -99999, beta=99999):
         if depth == 0 or game.isOver():
+            game.num_nodes += 1
             return (self.heurisic(game), "Garen")
         # Who is maximizing
         if game.isBluePick() or game.isBlueBan():

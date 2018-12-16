@@ -78,3 +78,4 @@ class Draft:
         print("Blue Picks:", self.blueTeam)
         print("Red Bans:", self.redBans)
         print("Red Picks", self.redTeam)
+        print(self.num_nodes)

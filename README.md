@@ -30,3 +30,8 @@ Be able to switch between teams without losing all of the previous data
 patch updates
 
 Champion reworks.
+
+
+
+Notes: We note that with standard minimax tree search, no AB pruning, depth 3 
+required 41 million nodes searched

@@ -7,7 +7,7 @@ from game.heuristics import alphabetic
 
 
 
-game = Draft(Tree(alphabetic), Tree(alphabetic), 4, 4)
+game = Draft(Tree(alphabetic), Tree(alphabetic), 3, 3)
 
 choice = input("Choose red side or blue side to draft from, or auto to have "
                "computer do both sides, " "by entering 'red', 'blue', or 'auto:")
