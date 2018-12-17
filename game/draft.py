@@ -1,4 +1,5 @@
 from .names import nameList
+from .heuristics import alphabetic
 class Draft:
     def __init__(self, blueTree, redTree, blueDepth, redDepth):
         # Storing what has been done so far
@@ -79,3 +80,4 @@ class Draft:
         print("Red Bans:", self.redBans)
         print("Red Picks", self.redTeam)
         print(self.num_nodes)
+        print(alphabetic(self))
