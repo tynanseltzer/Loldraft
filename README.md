@@ -34,4 +34,12 @@ Champion reworks.
 
 
 Notes: We note that with standard minimax tree search, no AB pruning, depth 3 
-required 41 million nodes searched
+required 41 million nodes searched, 
+
+After AB, 21 million nodes for depth 3.
+
+1.6B for AB nodes depth 4. 
+
+
+
+

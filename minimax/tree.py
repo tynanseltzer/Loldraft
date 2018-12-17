@@ -5,7 +5,7 @@ class Tree:
         self.heurisic = heuristic
 
     def stepMaximize(self, game, depth, alpha = -99999, beta=99999):
-        if depth == 0 or game.isOver():
+        if depth == 0 or game.isTerminal():
             game.num_nodes += 1
             return self.heurisic(game), "Garen"
         # Who is maximizing

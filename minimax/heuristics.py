@@ -1,4 +1,4 @@
-from game.names import number
+from minimax.names import number
 
 def alphabetic(game):
     return sum([number[champ] for champ in game.blueTeam]) - \

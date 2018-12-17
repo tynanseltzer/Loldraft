@@ -15,7 +15,7 @@ class Draft:
         # A testing parameter, to judge efficiency
         self.num_nodes = 0
 
-    # Given a champion selection, change the game state to reflect picking
+    # Given a champion selection, change the minimax state to reflect picking
     # or banning that champion
     def isBluePick(self):
         return self.actionCounter in [6, 9, 10, 17, 18]
@@ -43,7 +43,7 @@ class Draft:
 
         self.actionCounter += 1
 
-    def isOver(self):
+    def isTerminal(self):
         return self.actionCounter == 20
 
 
@@ -79,5 +79,4 @@ class Draft:
         print("Blue Picks:", self.blueTeam)
         print("Red Bans:", self.redBans)
         print("Red Picks", self.redTeam)
-        print(self.num_nodes)
         print(alphabetic(self))
