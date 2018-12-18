@@ -2,7 +2,7 @@ from MCTS.draft import Draft
 from heuristics.heuristics import alphabetic, valuation
 
 
-game = Draft(valuation, 1500, 1.41)
+game = Draft(valuation, 15000, 1.41)
 
 choice = input("Choose red side or blue side to draft from, or auto to have "
                "computer do both sides, " "by entering 'red', 'blue', or 'auto:")
