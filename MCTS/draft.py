@@ -3,12 +3,13 @@
 # to agree with the mcts library
 from input.names import nameList
 from copy import deepcopy
-from heuristics.heuristics import alphabetic, valuation
+from heuristics.heuristics import alphabetic, valuation, amateur, train
 from mcts.graph import (StateNode)
 from mcts.mcts import *
 import mcts.tree_policies as tree_policies
 import mcts.default_policies as default_policies
 import mcts.backups as backups
+
 
 class Draft:
     def __init__(self, heuristic, rolloutNumber, banditC):
@@ -18,6 +19,8 @@ class Draft:
         self.redBans = []
         self.actionCounter = 0
         self.heuristic = heuristic
+        if self.heuristic == amateur:
+            self.model = train()
         self.actions = self.getPossibleActions()
         self.mcts = MCTS(tree_policy=tree_policies.UCB1(c=banditC),
             default_policy=default_policies.random_terminal_roll_out,
