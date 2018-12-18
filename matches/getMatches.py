@@ -7,11 +7,11 @@ cass.set_default_region("NA")
 
 # Step 2: Get a bunch of matches
 
-with open('summoners.txt') as f:
+with open('../input/summoners.txt') as f:
     summoners = f.read().splitlines()
     print("Length of summoners.txt: "+str(len(summoners)))
 
-with open('match_ids.txt') as f:
+with open('../input/match_ids.txt') as f:
     ids = f.read().splitlines()
     print("Length of match_ids.txt: "+str(len(ids)))
 
@@ -33,6 +33,6 @@ for i in range(start+2, len(summoners)): # Change on crashes
     # Save IDs to file
     print("Writing match IDs to file...")
     print("Length of match_ids.txt: "+str(len(ids)))
-    with open('match_ids.txt', 'w') as f:
+    with open('../input/match_ids.txt', 'w') as f:
         for item in ids:
             f.write("%s\n" % item)
