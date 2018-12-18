@@ -1,16 +1,17 @@
-# This is very similar to the draft class, but has slightly different structure
+# This is very similar to the draft class in minimax, but has slightly different
+# structure
 # to agree with the mcts library
-from .names import nameList
+from input.names import nameList
 from copy import deepcopy
-from .heuristics import alphabetic
-from mcts.graph import (depth_first_search, _get_actions_and_states, StateNode)
+from heuristics.heuristics import alphabetic, valuation
+from mcts.graph import (StateNode)
 from mcts.mcts import *
 import mcts.tree_policies as tree_policies
 import mcts.default_policies as default_policies
 import mcts.backups as backups
 
 class Draft:
-    def __init__(self, heuristic):
+    def __init__(self, heuristic, rolloutNumber, banditC):
         self.blueTeam = []
         self.redTeam = []
         self.blueBans = []
@@ -18,9 +19,10 @@ class Draft:
         self.actionCounter = 0
         self.heuristic = heuristic
         self.actions = self.getPossibleActions()
-        self.mcts = MCTS(tree_policy=tree_policies.UCB1(c=1.41),
-            default_policy=default_policies.immediate_reward,
-            backup=backups.monte_carlo)
+        self.mcts = MCTS(tree_policy=tree_policies.UCB1(c=banditC),
+            default_policy=default_policies.random_terminal_roll_out,
+                backup=backups.Bellman(gamma=.8))
+        self.rolloutNumber = rolloutNumber
 
 
     def isBluePick(self):
@@ -40,21 +42,6 @@ class Draft:
                 champ not in self.redBans and champ not in self.blueTeam and
                 champ not in self.redTeam]
 
-    # def takeAction(self, action):
-    #     newState = deepcopy(self)
-    #     if newState.isBlueBan():
-    #         newState.blueBans.append(action)
-    #     elif newState. isRedBan():
-    #         newState.redBans.append(action)
-    #     elif newState.isBluePick():
-    #         newState.blueTeam.append(action)
-    #     else:
-    #         newState.redTeam.append(action)
-    #
-    #
-    #     newState.actionCounter += 1
-    #
-    #     return newState
 
     def perform(self, action):
         newState = deepcopy(self)
@@ -70,15 +57,11 @@ class Draft:
         newState.actionCounter += 1
 
         return newState
-    #
-    # def isTerminal(self):
-    #     return self.actionCounter == 20
+
 
     def is_terminal(self):
         return self.actionCounter == 20
 
-    # def getReward(self):
-    #     return self.heuristic(self)
 
     def reward(self, parent, action):
         return self.heuristic(self)
@@ -86,10 +69,10 @@ class Draft:
     def getMove(self):
         if self.isBlueBan() or self.isBluePick():
             return self.mcts(StateNode(parent=None, state=self),
-                             teamIsBlue=True, n=10000)
+                             teamIsBlue=True, n=self.rolloutNumber)
         else:
             return self.mcts(StateNode(parent=None, state=self),
-                             teamIsBlue=False, n=10000)
+                             teamIsBlue=False, n=self.rolloutNumber)
 
     def makeMove(self, champion):
         if self.isBlueBan():
@@ -109,7 +92,7 @@ class Draft:
         print("Blue Picks:", self.blueTeam)
         print("Red Bans:", self.redBans)
         print("Red Picks", self.redTeam)
-        print(alphabetic(self))
+        print(valuation(self))
 
     def __hash__(self):
         return hash(tuple(self.blueBans + self.redBans + self.blueTeam + self.redTeam + [self.actionCounter]))

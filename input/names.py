@@ -1,3 +1,4 @@
+import csv
 # Dictionary for name to number. alphabetized.
 number = {
     "Aatrox": 0,
@@ -145,3 +146,8 @@ number = {
 champs = {v: k for k, v in number.items()}
 
 nameList = list(number.keys())
+
+with open('input/ownBeliefs.csv', mode='r') as infile:
+    reader = csv.reader(infile)
+    beliefs = {row[0]: list(map(int, row[1:])) for row in reader}
+

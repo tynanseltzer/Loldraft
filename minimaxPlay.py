@@ -1,12 +1,14 @@
 from minimax.draft import Draft
 from minimax.tree import Tree
-from minimax.heuristics import alphabetic
+from heuristics.heuristics import alphabetic
+from heuristics.heuristics import valuation
 
 
 
 
 
-game = Draft(Tree(alphabetic), Tree(alphabetic), 2, 2)
+
+game = Draft(Tree(valuation), Tree(valuation), 2, 2)
 
 choice = input("Choose red side or blue side to draft from, or auto to have "
                "computer do both sides, " "by entering 'red', 'blue', or 'auto:")

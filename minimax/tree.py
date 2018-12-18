@@ -1,5 +1,3 @@
-from .names import number
-
 class Tree:
     def __init__(self, heuristic):
         self.heurisic = heuristic

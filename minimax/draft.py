@@ -1,5 +1,6 @@
-from .names import nameList
-from .heuristics import alphabetic
+from input.names import nameList
+from heuristics.heuristics import alphabetic
+from heuristics.heuristics import valuation
 class Draft:
     def __init__(self, blueTree, redTree, blueDepth, redDepth):
         # Storing what has been done so far
@@ -79,4 +80,4 @@ class Draft:
         print("Blue Picks:", self.blueTeam)
         print("Red Bans:", self.redBans)
         print("Red Picks", self.redTeam)
-        print(alphabetic(self))
+        print(valuation(self))
