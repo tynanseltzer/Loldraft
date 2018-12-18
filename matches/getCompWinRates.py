@@ -33,9 +33,9 @@ for i in range(13750, len(ids)):
         # Pickle data to disk
         print("Pickling...")
         print("Matches analyzed so far: "+str(i))
-        print("Drafts analyzed: " + len(data))
+        print("Drafts analyzed: " + str(len(data)))
         # print("Rejected: " + str(rejected))
-        with open('data.pickle', 'wb') as handle:
+        with open('../input/data.pickle', 'wb') as handle:
             pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     # Don't waste time accessing the match if we know it's old.
@@ -92,5 +92,5 @@ for i in range(13750, len(ids)):
     print(str(i) + " – GOOD") # Need to know where to pick back up after we crash
 
 # Save again if we finish the loop
-with open('data.pickle', 'wb') as handle:
+with open('../input/data.pickle', 'wb') as handle:
     pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
