@@ -27,7 +27,7 @@ print("Length of dict: " +str(len(data)))
 #     if(len(result) > 1):
 #         print("-----------MULTIPLE GAMES-----------")
 
-for i in range(34250, len(ids)):
+for i in range(41500, len(ids)):
 
     if i%50 == 0: # Save data every once in a while
         # Pickle data to disk
