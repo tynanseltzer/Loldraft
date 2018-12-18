@@ -27,13 +27,13 @@ print("Length of dict: " +str(len(data)))
 #     if(len(result) > 1):
 #         print("-----------MULTIPLE GAMES-----------")
 
-for i in range(27800, len(ids)):
+for i in range(34250, len(ids)):
 
     if i%50 == 0: # Save data every once in a while
         # Pickle data to disk
         print("Pickling...")
         print("Matches analyzed so far: "+str(i))
-        print("Drafts analyzed: " + str(len(data)))
+        print("Unique drafts analyzed: " + str(len(data)))
         # print("Rejected: " + str(rejected))
         with open('../input/data.pickle', 'wb') as handle:
             pickle.dump(data, handle, protocol=pickle.HIGHEST_PROTOCOL)
