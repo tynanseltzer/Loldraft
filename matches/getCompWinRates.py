@@ -4,7 +4,7 @@ from cassiopeia.data import Season, Queue
 import pickle
 import math
 
-cass.set_riot_api_key("RGAPI-e2ea041a-5f1d-4158-90fd-1d73fd1e3465") # Expires Dec 18
+cass.set_riot_api_key("RGAPI-5a430823-8097-423e-9d9a-6ab2621f3dce") # Expires Dec 19
 cass.set_default_region("NA")
 
 champion_id_to_name_mapping = {champion.id: champion.name for champion in cass.get_champions(region="NA")} # From Cass examples match.py
@@ -27,7 +27,7 @@ print("Length of dict: " +str(len(data)))
 #     if(len(result) > 1):
 #         print("-----------MULTIPLE GAMES-----------")
 
-for i in range(48950, len(ids)):
+for i in range(74900, len(ids)):
 
     if i%50 == 0: # Save data every once in a while
         # Pickle data to disk
