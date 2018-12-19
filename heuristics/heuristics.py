@@ -1,11 +1,11 @@
 from input.names import number
 from input.names import beliefs
+from input.names import nameList
 from itertools import permutations, combinations
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import xgboost as xgb
 import numpy as np
-import cassiopeia as cass
 
 def alphabetic(game):
     return sum([number[champ] for champ in game.blueTeam]) - \
@@ -49,7 +49,7 @@ def transform(blueTeam, redTeam):
     :return:
     Length 282 vector one hot encoded
     '''
-    champion_names = [champion.name for champion in cass.get_champions(region="NA")]
+    champion_names = nameList
     vector = [0] * 282
     for champ in blueTeam:
         id = champion_names.index(champ)
@@ -63,7 +63,7 @@ def transform(blueTeam, redTeam):
 def amateur(game):
     vector = transform(game.blueTeam, game.redTeam)
     array = np.asarray(vector)
-    array.reshape((1,282))
+    array = array.reshape((1,282))
     array = pd.DataFrame(data=array, index=[0], columns=range(282))
     values = game.model.predict_proba(array)
-    return values[1] - values[0]
+    return values[0][1] - values[0][0]

@@ -80,4 +80,4 @@ class Draft:
         print("Blue Picks:", self.blueTeam)
         print("Red Bans:", self.redBans)
         print("Red Picks", self.redTeam)
-        print(valuation(self))
+        print("Nodes:", self.num_nodes)
