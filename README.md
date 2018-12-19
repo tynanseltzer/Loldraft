@@ -14,6 +14,11 @@ within the unzipped directory, running 'python setup.py install'
 To use, run either mctsPlay.py, or minimaxPlay.py. You will be asked to choose
 your heuristic, and other parameters, and what team(s) the AI should play.
 
+you can have it be the red team or the blue team, or auto to have it 
+ play both teams. Please note that misspelling a champion will cause the system
+ to crash. The list of champions can be found at 
+ https://na.leagueoflegends.com/en/game-info/champions/
+
 
 
 
