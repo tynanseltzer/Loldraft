@@ -10,9 +10,14 @@ blueDepth = input("Choose the depth of blue Team AI for minimax, "
 heuristic = input("Choose the heuristic to use. Choices are 'alphabetic', or "
                   "'valuation' (pro):")
 
+if heuristic == "alphabetic":
+    func = alphabetic
+else:
+    func = valuation
 
 
-game = Draft(Tree(heuristic), Tree(heuristic), int(blueDepth), int(redDepth))
+
+game = Draft(Tree(func), Tree(func), int(blueDepth), int(redDepth))
 
 choice = input("Choose red side or blue side to draft from, or auto to have "
                "computer do both sides, " "by entering 'red', 'blue', or 'auto:")
