@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import xgboost as xgb
 import numpy as np
+import cassiopeia as cass
 
 def alphabetic(game):
     return sum([number[champ] for champ in game.blueTeam]) - \
@@ -40,15 +41,22 @@ def train():
 
 def transform(blueTeam, redTeam):
     '''
-
+    
     :param blueTeam:
     Some list length 5 of form ["Galio", "Irelia"...]
     :param redTeam:
     Same as above
     :return:
-    Length 182 vector one hot encoded
+    Length 282 vector one hot encoded
     '''
-    pass
+    champion_names = [champion.name for champion in cass.get_champions(region="NA")]
+    vector = [0] * 282
+    for champ in blueTeam:
+        id = champion_names.index(champ)
+        vector[id] = 1
+    for champ in redTeam:
+        id = champion_names.index(champ)
+        vector[id+141] = 1
 
 def amateur(game):
     vector = transform(game.blueTeam, game.redTeam)
