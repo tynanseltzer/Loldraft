@@ -95,7 +95,6 @@ class Draft:
         print("Blue Picks:", self.blueTeam)
         print("Red Bans:", self.redBans)
         print("Red Picks", self.redTeam)
-        print(valuation(self))
 
     def __hash__(self):
         return hash(tuple(self.blueBans + self.redBans + self.blueTeam + self.redTeam + [self.actionCounter]))
