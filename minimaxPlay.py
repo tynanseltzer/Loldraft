@@ -12,7 +12,7 @@ heuristic = input("Choose the heuristic to use. Choices are 'alphabetic', or "
 
 
 
-game = Draft(Tree(heuristic), Tree(heuristic), blueDepth, redDepth)
+game = Draft(Tree(heuristic), Tree(heuristic), int(blueDepth), int(redDepth))
 
 choice = input("Choose red side or blue side to draft from, or auto to have "
                "computer do both sides, " "by entering 'red', 'blue', or 'auto:")
