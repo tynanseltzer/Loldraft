@@ -1,11 +1,16 @@
 from MCTS.draft import Draft
 from heuristics.heuristics import alphabetic, valuation, amateur
 
+rollouts = input("Choose the number of rollouts done per draft selection, "
+                 "recommended 1000-1500:")
+heuristic = input("Choose the heuristic to use. Choices are 'alphabetic', "
+                  "'valuation' (pro), or amateur:")
 
-game = Draft(amateur, 1000, 1.41)
+game = Draft(heuristic, rollouts, 1.41)
 
 choice = input("Choose red side or blue side to draft from, or auto to have "
-               "computer do both sides, " "by entering 'red', 'blue', or 'auto:")
+               "computer do both sides, " "by entering 'red', 'blue', or "
+               "'auto':")
 
 if choice == "blue":
     while not game.is_terminal():

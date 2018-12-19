@@ -1,44 +1,18 @@
 # lolDraft
 Program to assist pro teams in Lol drafting
 
+# Dependencies:
+This requires some standard libraries, including numpy, pandas, and scikit-learn.
+We also required xgboost, which can be installed with pip install xgboost.
 
-# Things to do:
-Game tree: This should be pretty standard stuff, and has been done before 
-(famous last words).
+Finally, we require the author's version of an MCTS library, found at 
+https://github.com/tynanseltzer/mcts. This cannot be installed with pip, so you 
+must download the zipfile of the repo from Github, unzip it, and then from 
+within the unzipped directory, running 'python setup.py install'
 
-Evaluation function: This is the hard part. I think, given how few games are 
-played at the pro level, we're gonna have to do some tricks to get the convergence
-to happen in any ML method for some function. 
-
-We ask a team to label the following:
-For each roll, all champions playable in that roll, and say a number 0-100 which
-is power for that roll
-
-The same for whomever they are playing
-
-And then perhaps a table to represent lane matchups or otherwise  relations 
-between two champions. 
-
-And then, from this we get some basic evaluation function, which we then suggest
-teams for the human to label, and use those new training examples to make the
-function better. 
-
-
-Features later added:
-Be able to switch between teams without losing all of the previous data
-
-patch updates
-
-Champion reworks.
-
-
-
-Notes: We note that with standard minimax tree search, no AB pruning, depth 3 
-required 41 million nodes searched, 
-
-After AB, 21 million nodes for depth 3.
-
-1.6B for AB nodes depth 4. 
+# Usage
+To use, run either mctsPlay.py, or minimaxPlay.py. You will be asked to choose
+your heuristic, and other parameters, and what team(s) the AI should play.
 
 
 
