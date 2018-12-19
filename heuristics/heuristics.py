@@ -57,6 +57,8 @@ def transform(blueTeam, redTeam):
     for champ in redTeam:
         id = champion_names.index(champ)
         vector[id+141] = 1
+        
+    return vector
 
 def amateur(game):
     vector = transform(game.blueTeam, game.redTeam)
