@@ -13,7 +13,7 @@ elif heuristic == "valuation":
 else:
     func = amateur
 
-game = Draft(func, rollouts, 1.41)
+game = Draft(func, int(rollouts), 1.41)
 
 choice = input("Choose red side or blue side to draft from, or auto to have "
                "computer do both sides, " "by entering 'red', 'blue', or "
